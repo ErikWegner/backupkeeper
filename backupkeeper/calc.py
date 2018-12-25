@@ -1,5 +1,6 @@
 import datetime
 
+
 def calc_keep_date(backupdate, existing_backups):
     """
         Calculate the date until a backup is protected from deletion.
@@ -22,7 +23,6 @@ def calc_keep_date(backupdate, existing_backups):
                 year, month, day = addWeeks(year, month, day, 2)
             else:
                 year, month, day = addWeeks(year, month, day, 1)
-
 
     return f"{year:04}-{month:02}-{day:02}"
 
@@ -53,8 +53,9 @@ def is_friday(year, month, day):
     d = datetime.date(year, month, day)
     return d.weekday() == 4
 
+
 def addWeeks(year, month, day, num_weeks):
     d = datetime.date(year, month, day)
-    td = datetime.timedelta(days = num_weeks * 7)
+    td = datetime.timedelta(days=num_weeks * 7)
     d = d + td
     return d.year, d.month, d.day

@@ -3,6 +3,7 @@ from .backupmetadata import BackupMetadata
 
 storage_file = ".backupkeepdate"
 
+
 def walker(root_directory):
     """
        Load existing backups
@@ -12,6 +13,16 @@ def walker(root_directory):
         for entry in it:
             if not entry.name.startswith('.') and entry.is_dir():
                 created_date = entry.name
-                if os.path.isfile(os.path.join(entry.path, storage_file)) or os.path.isfile(os.path.join(entry.path, '.backupdatum')):
-                    existing_backups.append(BackupMetadata(created_date, '0000-00-00'))
+                storage_file_name = None
+
+                if os.path.isfile(os.path.join(entry.path, storage_file)):
+                    storage_file_name = os.path.join(entry.path, storage_file)
+                if os.path.isfile(os.path.join(entry.path, '.backupdatum')):
+                    storage_file_name = os.path.join(
+                        entry.path, '.backupdatum')
+                if storage_file_name:
+                    with open(storage_file_name) as f:
+                        keep_date = f.read()
+                        existing_backups.append(
+                            BackupMetadata(created_date, keep_date))
     return existing_backups
