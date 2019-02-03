@@ -1,3 +1,11 @@
 {
-    "python.pythonPath": "/home/erikwegner/.local/share/virtualenvs/backup-keeper-HY6yVKyQ/bin/python"
+    "python.pythonPath": "/usr/bin/python",
+    "python.unitTest.pyTestArgs": [
+        "backupkeeper"
+    ],
+    "python.unitTest.unittestEnabled": false,
+    "python.unitTest.nosetestsEnabled": false,
+    "python.unitTest.pyTestEnabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true
 }
